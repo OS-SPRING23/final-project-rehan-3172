@@ -4,7 +4,9 @@ using namespace std;
 
 #include "algorithms/FIFO.hpp"
 #include "algorithms/LRU.hpp"
-void test();
+
+void testFIFO();
+void testLRU();
 
 int main(){
     // string input;
@@ -12,6 +14,7 @@ int main(){
     // int frames, numOfProcesses;
     // vector<int> processes;
 
+    //code commented out for testing
     // cout<<"Enter the number of processes: ";
     // cin>>numOfProcesses;
     // cout<<"Enter your processes: ";
@@ -23,17 +26,26 @@ int main(){
     // cout<<"\nEnter the number of frames: ";
     // cin>>frames;
 
-    test();
+    testFIFO();
+    testLRU();
 
     // cout<<"Enter your proceses without spaces(12345): "
 }
-void test(){
-    // FIFO fifo;
+void testFIFO(){
+    cout<<"FIFO TEST\n";
+    vector<int>p = {3 ,2 ,1 ,4 ,2 ,1 ,7 ,6 ,2 ,1 ,2 ,3 ,6 ,5 ,1, 2, 3 ,6 ,4 ,2};
+    int frames=4;
+    FIFO fifo;
+    fifo.executeFIFO(p,frames);
+    cout<<"FIFO HITS: "<<fifo.getHits()<<endl;
+    cout<<"FIFO FAULTS: "<<fifo.getFaults()<<endl<<endl;
+}
+void testLRU(){
+    cout<<"LRU TEST\n";
     vector<int>p = {7 ,0 ,1 ,2 ,0 ,3 ,0 ,4 ,2, 3, 0, 3 ,2};
-    // {3 ,2 ,1 ,4 ,2 ,1 ,7 ,6 ,2 ,1 ,2 ,3 ,6 ,5 ,1, 2, 3 ,6 ,4 ,2};
     int frames=4;
     LRU lru;
     lru.executeLRU(p,frames);
-    cout<<lru.getHits()<<endl;
-    cout<<lru.getFaults()<<endl;
+    cout<<"LRU HITS: "<<lru.getHits()<<endl;
+    cout<<"LRU FAULTS: "<<lru.getFaults()<<endl<<endl;
 }
