@@ -135,14 +135,15 @@ class circularList
     }
     void print(){
         nodeCir* temp=head;
-        cout<<"{";
+        cout<<"{ ";
         do{
             cout<<temp->data<<" ";
             temp=temp->next;
         }while (temp!=head);
-        cout<<"}\n";
+        cout<<"}";
         temp=head;
-        cout<<"{";
+        cout<<" Chance: ";
+        cout<<"{ ";
         do
         {
             cout<<temp->chance<<" ";

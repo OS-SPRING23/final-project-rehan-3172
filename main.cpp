@@ -89,8 +89,9 @@ int runLRU(vector<int>proc, int frames){
 int runSCD(vector<int>proc, int frames){
     SCD scd;
     scd.executeSCD(proc,frames);
-    cout<<"\nFaults: "<<scd.getFaults();
-    cout<<"Hits: "<<scd.getHits();
+    cout<<"SCD Hits: "<<scd.getHits();
+    cout<<"\nSCD Faults: "<<scd.getFaults();
+    cout<<"\n\n";
     return scd.getFaults(); 
 }
 int runOPT(vector<int>proc, int frames){

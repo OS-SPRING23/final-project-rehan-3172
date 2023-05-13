@@ -34,7 +34,8 @@ bool SCD::executeSCD(vector<int>proc, int frames){
     this->frames=frames;
     circularList exec(frames);
     // circularList exec(frames);
-    
+    cout<<endl;
+    cout<<"Second Chance Page Replacement Algorithm"<<endl;
     for(int i=0;i<proc.size();i++){
         int currProc=proc[i];
         if(exec.search(currProc)){
@@ -44,7 +45,7 @@ bool SCD::executeSCD(vector<int>proc, int frames){
             exec.append(currProc);
            // exec.update(currProc);
             hits++;
-            cout<<i+1<<" Proc: "<<currProc<<" Hits: "<<hits<<endl;
+            cout<<"Hits:\t";
         }
         else{
             // cout<<i;
@@ -52,7 +53,7 @@ bool SCD::executeSCD(vector<int>proc, int frames){
             //exec.search_v(proc,i,currProc);	//this will search for future pages and then order the circularList according to that.
            // exec.update(currProc);
             faults++;
-            cout<<i+1<<" Proc: "<<currProc<<" Fault: "<<faults<<endl;
+            cout<<"Fault:\t";
         }
         exec.print();
     }
