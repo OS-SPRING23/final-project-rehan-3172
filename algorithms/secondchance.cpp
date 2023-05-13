@@ -33,6 +33,7 @@ class list
     list(int frames)
     {
     	head=NULL;
+        curr=NULL;
 		//tail=NULL;
         this->frames=frames;
         len=0;
@@ -57,7 +58,6 @@ class list
 			else
             {
 				len++;
-			}
 			node*temp1=head;
             while(temp1->next!=head)
             {
@@ -66,6 +66,7 @@ class list
             temp1->next=temp;
             temp->next=head;
             curr=temp;
+			}
 
 		}
 	}
@@ -74,15 +75,17 @@ class list
         curr=curr->next;
         int flag=0;
         node *temp=head;
-        while(temp->next!=head)
+        // while(temp->next!=head)
+        do
         {
-            temp=temp->next;
             if(temp->data==a)
             {
                 temp->chance=true;
                 flag=1;
+                break;
             }
-        }
+            temp=temp->next;
+        }while(temp!=head);
         // else if(curr->chance==true)
         // {
         //     curr->chance=false;
@@ -107,14 +110,28 @@ class list
     }
     bool search(int val){
         node* temp=head;
-        while(temp!=NULL){
+        if(head==NULL){
+            return false;
+        }
+        do{
+            // cout<<temp->data<<"|";
             if(temp->data==val){
                 return true;
             }
             temp=temp->next;
-        }
+        }while(temp!=head);
         return false;
-        }
+    }
+    void print(){
+        node* temp=head;
+        cout<<"{";
+        do{
+            cout<<temp->data<<" ";
+            temp=temp->next;
+        }while (temp!=head);
+        cout<<"}\n";
+        
+    }
 };
 class SCD{
 public:
@@ -145,6 +162,7 @@ int SCD::getFaults(){
 }
 
 bool SCD::executeSCD(vector<int>proc, int frames){
+    this->frames=frames;
     list exec(frames);
     
     for(int i=0;i<proc.size();i++){
@@ -153,18 +171,20 @@ bool SCD::executeSCD(vector<int>proc, int frames){
             // exec.deleteSpecific(currProc);
             //exec.foundLRU(currProc);
             // exec.deleteSpecific(currProc);
-            // exec.append(currProc);
+            exec.append(currProc);
             exec.update(currProc);
             hits++;
-            cout<<i<<" Proc: "<<currProc<<" Hits: "<<hits<<endl;
+            cout<<i+1<<" Proc: "<<currProc<<" Hits: "<<hits<<endl;
         }
         else{
-            //exec.append(currProc);
+            // cout<<i;
+            exec.append(currProc);
             //exec.search_v(proc,i,currProc);	//this will search for future pages and then order the list according to that.
             exec.update(currProc);
             faults++;
-            cout<<i<<" Proc: "<<currProc<<" Fault: "<<faults<<endl;
+            cout<<i+1<<" Proc: "<<currProc<<" Fault: "<<faults<<endl;
         }
+        exec.print();
     }
 }
 
@@ -172,9 +192,10 @@ bool SCD::executeSCD(vector<int>proc, int frames){
 int main()
 {
     vector<int> proc={2, 5, 10, 1, 2 ,2 ,6, 9 ,1 ,2 ,10, 2, 6, 1, 2, 1 ,6 ,9, 5, 1};
+    vector<int> p={0 ,4 ,1 ,4 ,2, 4 ,3, 4 ,2, 4 ,0, 4, 1, 4, 2, 4, 3 ,4};
     //list l(3);
     SCD test;
-    test.executeSCD(proc,3);
-
-
+    test.executeSCD(p,3);
+    cout<<"\nFaults: "<<test.getFaults();
+    cout<<"Hits: "<<test.getHits();
 }
