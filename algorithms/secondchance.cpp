@@ -12,6 +12,13 @@ class node
         chance=false;
         next=NULL;
     }
+    node(int data)
+    {
+        this->data=data;
+        chance=false;
+        next=NULL;
+
+    }
 
 };
 class list
