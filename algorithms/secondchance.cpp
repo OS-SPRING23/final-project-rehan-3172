@@ -7,17 +7,20 @@ class node
     int data;
     bool chance;
     node *next;
+    //int c;
     node()
     {
         data=0;
         chance=false;
         next=NULL;
+
     }
     node(int data)
     {
         this->data=data;
         chance=false;
         next=NULL;
+       // c=0;
 
     }
 
@@ -27,6 +30,7 @@ class list
     public:
    node *head;
    node *curr;
+   int c;
   // node *tail;
     int len;
     int frames;
@@ -37,6 +41,7 @@ class list
 		//tail=NULL;
         this->frames=frames;
         len=0;
+        c=0;
     }
     void append(int a)
     {
@@ -48,15 +53,14 @@ class list
             curr=head;
             head->next=head;
             len++;
+            //cout<<curr->data<<endl;
 		}
+		else if(len==frames)
+        {
+            update(a);
+        }
 		else
         {
-            if(len==frames)
-            {
-                   update(a);    
-            }
-			else
-            {
 				len++;
 			node*temp1=head;
             while(temp1->next!=head)
@@ -66,13 +70,17 @@ class list
             temp1->next=temp;
             temp->next=head;
             curr=temp;
-			}
-
 		}
+            //cout<<curr->data<<endl;
 	}
+	
     void update(int a)
     {
+        if(c==0)
+        {
         curr=curr->next;
+            c=1;
+        }
         int flag=0;
         node *temp=head;
         // while(temp->next!=head)
@@ -103,9 +111,11 @@ class list
             curr=curr->next;
         }
         curr->data=a;
-        curr->chance=false;
         curr=curr->next;
+        //curr->chance=false;
         }
+
+        cout<<curr->data<<endl;
         
     }
     bool search(int val){
@@ -129,6 +139,14 @@ class list
             cout<<temp->data<<" ";
             temp=temp->next;
         }while (temp!=head);
+        cout<<"}\n";
+        temp=head;
+        cout<<"{";
+        do
+        {
+            cout<<temp->chance<<" ";
+            temp=temp->next;
+        } while (temp!=head);
         cout<<"}\n";
         
     }
@@ -172,7 +190,7 @@ bool SCD::executeSCD(vector<int>proc, int frames){
             //exec.foundLRU(currProc);
             // exec.deleteSpecific(currProc);
             exec.append(currProc);
-            exec.update(currProc);
+           // exec.update(currProc);
             hits++;
             cout<<i+1<<" Proc: "<<currProc<<" Hits: "<<hits<<endl;
         }
@@ -180,7 +198,7 @@ bool SCD::executeSCD(vector<int>proc, int frames){
             // cout<<i;
             exec.append(currProc);
             //exec.search_v(proc,i,currProc);	//this will search for future pages and then order the list according to that.
-            exec.update(currProc);
+           // exec.update(currProc);
             faults++;
             cout<<i+1<<" Proc: "<<currProc<<" Fault: "<<faults<<endl;
         }
@@ -192,7 +210,8 @@ bool SCD::executeSCD(vector<int>proc, int frames){
 int main()
 {
     vector<int> proc={2, 5, 10, 1, 2 ,2 ,6, 9 ,1 ,2 ,10, 2, 6, 1, 2, 1 ,6 ,9, 5, 1};
-    vector<int> p={0 ,4 ,1 ,4 ,2, 4 ,3, 4 ,2, 4 ,0, 4, 1, 4, 2, 4, 3 ,4};
+    //vector<int> p1={2 ,5 ,10, 1 ,2 ,2, 6, 9, 1,2, 10, 2, 6, 1 ,2 ,1, 6 ,9 ,5 ,1};
+   vector<int> p={3, 2, 1, 4, 2, 1, 7, 6, 2, 1, 2, 3, 6, 5, 1, 2, 3, 6, 4, 2};
     //list l(3);
     SCD test;
     test.executeSCD(p,3);
