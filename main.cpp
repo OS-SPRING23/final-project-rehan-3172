@@ -31,35 +31,32 @@ int main(){
 	  testOPT();
     // cout<<"Enter your proceses without spaces(12345): "
 }
-//void testFIFO(){
-//    cout<<"FIFO TEST\n";
-//    vector<int>p = {3 ,2 ,1 ,4 ,2 ,1 ,7 ,6 ,2 ,1 ,2 ,3 ,6 ,5 ,1, 2, 3 ,6 ,4 ,2};
-//    int frames=4;
-//    FIFO fifo;
-//    fifo.executeFIFO(p,frames);
-//    cout<<"FIFO HITS: "<<fifo.getHits()<<endl;
-//    cout<<"FIFO FAULTS: "<<fifo.getFaults()<<endl<<endl;
-//}
-//void testLRU(){
-//    cout<<"LRU TEST\n";
-//    vector<int>p = {7 ,0 ,1 ,2 ,0 ,3 ,0 ,4 ,2, 3, 0, 3 ,2};
-//    int frames=4;
-//    LRU lru;
-//    lru.executeLRU(p,frames);
-//    cout<<"LRU HITS: "<<lru.getHits()<<endl;
-//    cout<<"LRU FAULTS: "<<lru.getFaults()<<endl<<endl;
-//}
+void testFIFO(){
+   cout<<"FIFO TEST\n";
+   vector<int>p = {3 ,2 ,1 ,4 ,2 ,1 ,7 ,6 ,2 ,1 ,2 ,3 ,6 ,5 ,1, 2, 3 ,6 ,4 ,2};
+   int frames=4;
+   FIFO fifo;
+   fifo.executeFIFO(p,frames);
+   cout<<"FIFO HITS: "<<fifo.getHits()<<endl;
+   cout<<"FIFO FAULTS: "<<fifo.getFaults()<<endl<<endl;
+}
+void testLRU(){
+   cout<<"LRU TEST\n";
+   vector<int>p = {7 ,0 ,1 ,2 ,0 ,3 ,0 ,4 ,2, 3, 0, 3 ,2};
+   int frames=4;
+   LRU lru;
+   lru.executeLRU(p,frames);
+   cout<<"LRU HITS: "<<lru.getHits()<<endl;
+   cout<<"LRU FAULTS: "<<lru.getFaults()<<endl<<endl;
+}
 void testOPT(){
 	cout<<"OPT TEST\n";
-	int size;	//size of data frame
-	cin>>size;
-	vector<int>p;
-	for(int i=0;i<size;i++){
-		int n;
-		cin>>n;
-		p.push_back(n);
-	}
-	int frames=3;
+	// vector<int>p={7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
+    //frames=3
+
+	vector<int>p={7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2};
+
+	int frames=4;
     OPT opt;
     opt.executeOPT(p,frames);
     cout<<"OPT HITS: "<<opt.getHits()<<endl;
