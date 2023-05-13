@@ -70,7 +70,7 @@ class linkedList{
 				deleteHead();
 				return true;
 			}
-				cout<<temp->data<<"|";
+				// cout<<temp->data<<"|";
 			while(temp->next!=NULL){
 				if(temp->next->data==val && temp->next!=NULL){
 					
@@ -133,6 +133,15 @@ class linkedList{
 				}
 				temp->data=val;
 			}
+		}
+		void print(){
+			node* temp=head;
+			cout<<"{ ";
+			do{
+				cout<<temp->data<<" ";
+				temp=temp->next;
+			}while(temp!=NULL);
+			cout<<"}\n";
 		}
 		
 };

@@ -1,21 +1,22 @@
-#include<iostream>
+#pragma once
+#include <iostream>
 #include<vector>
 using namespace std;
-class node
+class nodeCir
 {
     public:
     int data;
     bool chance;
-    node *next;
+    nodeCir *next;
     //int c;
-    node()
+    nodeCir()
     {
         data=0;
         chance=false;
         next=NULL;
 
     }
-    node(int data)
+    nodeCir(int data)
     {
         this->data=data;
         chance=false;
@@ -25,16 +26,16 @@ class node
     }
 
 };
-class list
+class circularList
 {
     public:
-   node *head;
-   node *curr;
+   nodeCir *head;
+   nodeCir *curr;
    int c;
-  // node *tail;
+  // nodeCir *tail;
     int len;
     int frames;
-    list(int frames)
+    circularList(int frames)
     {
     	head=NULL;
         curr=NULL;
@@ -45,7 +46,7 @@ class list
     }
     void append(int a)
     {
-        node* temp= new node(a);
+        nodeCir* temp= new nodeCir(a);
 		if(head==NULL)
         {
 			head=temp;
@@ -62,7 +63,7 @@ class list
 		else
         {
 				len++;
-			node*temp1=head;
+			nodeCir*temp1=head;
             while(temp1->next!=head)
             {
                 temp1=temp1->next;
@@ -82,7 +83,7 @@ class list
             c=1;
         }
         int flag=0;
-        node *temp=head;
+        nodeCir *temp=head;
         // while(temp->next!=head)
         do
         {
@@ -115,11 +116,11 @@ class list
         //curr->chance=false;
         }
 
-        cout<<curr->data<<endl;
+        // cout<<curr->data<<endl;
         
     }
     bool search(int val){
-        node* temp=head;
+        nodeCir* temp=head;
         if(head==NULL){
             return false;
         }
@@ -133,7 +134,7 @@ class list
         return false;
     }
     void print(){
-        node* temp=head;
+        nodeCir* temp=head;
         cout<<"{";
         do{
             cout<<temp->data<<" ";
@@ -151,70 +152,3 @@ class list
         
     }
 };
-class SCD{
-public:
-    SCD();
-    bool executeSCD(vector<int>, int);
-    void setFrames(int);
-    int getHits();
-    int getFaults();
-private:
-    int frames,hits,faults;
-    // int hits;
-    // int
-
-};
-SCD::SCD(){
-    this->frames=3;//default
-    hits=0;
-    faults=0;
-}
-void SCD::setFrames(int frames){
-    this->frames=frames;
-}
-int SCD::getHits(){
-    return hits;
-}
-int SCD::getFaults(){
-    return faults;
-}
-
-bool SCD::executeSCD(vector<int>proc, int frames){
-    this->frames=frames;
-    list exec(frames);
-    
-    for(int i=0;i<proc.size();i++){
-        int currProc=proc[i];
-        if(exec.search(currProc)){
-            // exec.deleteSpecific(currProc);
-            //exec.foundLRU(currProc);
-            // exec.deleteSpecific(currProc);
-            exec.append(currProc);
-           // exec.update(currProc);
-            hits++;
-            cout<<i+1<<" Proc: "<<currProc<<" Hits: "<<hits<<endl;
-        }
-        else{
-            // cout<<i;
-            exec.append(currProc);
-            //exec.search_v(proc,i,currProc);	//this will search for future pages and then order the list according to that.
-           // exec.update(currProc);
-            faults++;
-            cout<<i+1<<" Proc: "<<currProc<<" Fault: "<<faults<<endl;
-        }
-        exec.print();
-    }
-}
-
-
-int main()
-{
-    vector<int> proc={2, 5, 10, 1, 2 ,2 ,6, 9 ,1 ,2 ,10, 2, 6, 1, 2, 1 ,6 ,9, 5, 1};
-    //vector<int> p1={2 ,5 ,10, 1 ,2 ,2, 6, 9, 1,2, 10, 2, 6, 1 ,2 ,1, 6 ,9 ,5 ,1};
-   vector<int> p={3, 2, 1, 4, 2, 1, 7, 6, 2, 1, 2, 3, 6, 5, 1, 2, 3, 6, 4, 2};
-    //list l(3);
-    SCD test;
-    test.executeSCD(p,3);
-    cout<<"\nFaults: "<<test.getFaults();
-    cout<<"Hits: "<<test.getHits();
-}

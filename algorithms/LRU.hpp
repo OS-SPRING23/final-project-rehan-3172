@@ -34,6 +34,8 @@ int LRU::getFaults(){
 
 bool LRU::executeLRU(vector<int>proc, int frames){
     linkedList exec(frames);
+    cout<<"\nLeast Recently Used Page Replacement Algorithm\n";
+    cout<<"Data printed from least recently used to most recently used\n";
     
     for(int i=0;i<proc.size();i++){
         int currProc=proc[i];
@@ -43,12 +45,15 @@ bool LRU::executeLRU(vector<int>proc, int frames){
             // exec.deleteSpecific(currProc);
             // exec.append(currProc);
             hits++;
-            cout<<i<<"Proc: "<<currProc<<" Hits: "<<hits<<endl;
+            cout<<"Hit:\t";
+            // cout<<i<<"Proc: "<<currProc<<" Hits: "<<hits<<endl;
         }
         else{
             exec.append(currProc);
             faults++;
-            cout<<i<<"Proc: "<<currProc<<" Fault: "<<faults<<endl;
+            cout<<"Fault:\t";
+            // cout<<i<<"Proc: "<<currProc<<" Fault: "<<faults<<endl;
         }
+        exec.print();
     }
 }

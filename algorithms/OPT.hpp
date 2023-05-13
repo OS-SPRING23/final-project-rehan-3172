@@ -34,7 +34,7 @@ int OPT::getFaults(){
 
 bool OPT::executeOPT(vector<int>proc, int frames){
     linkedList exec(frames);
-    
+    cout<<"\nOptimal Page Replacement Algorithm\n";
     for(int i=0;i<proc.size();i++){
         int currProc=proc[i];
         if(exec.search(currProc)){
@@ -43,13 +43,16 @@ bool OPT::executeOPT(vector<int>proc, int frames){
             // exec.deleteSpecific(currProc);
             // exec.append(currProc);
             hits++;
-            cout<<i<<" Proc: "<<currProc<<" Hits: "<<hits<<endl;
+            cout<<"Hit:\t";
+            // cout<<i<<" Proc: "<<currProc<<" Hits: "<<hits<<endl;
         }
         else{
             //exec.append(currProc);
             exec.search_v(proc,i,currProc);	//this will search for future pages and then order the list according to that.
             faults++;
-            cout<<i<<" Proc: "<<currProc<<" Fault: "<<faults<<endl;
+            cout<<"Fault:\t";
+            // cout<<i<<" Proc: "<<currProc<<" Fault: "<<faults<<endl;
         }
+        exec.print();
     }
 }
