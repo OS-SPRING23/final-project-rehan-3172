@@ -4,10 +4,10 @@ using namespace std;
 
 #include "algorithms/FIFO.hpp"
 #include "algorithms/LRU.hpp"
-
-void testFIFO();
-void testLRU();
-
+#include "algorithms/OPT.hpp"
+//void testFIFO();
+//void testLRU();
+void testOPT();
 int main(){
     // string input;
 
@@ -26,26 +26,42 @@ int main(){
     // cout<<"\nEnter the number of frames: ";
     // cin>>frames;
 
-    testFIFO();
-    testLRU();
-
+//    testFIFO();
+//    testLRU();
+	  testOPT();
     // cout<<"Enter your proceses without spaces(12345): "
 }
-void testFIFO(){
-    cout<<"FIFO TEST\n";
-    vector<int>p = {3 ,2 ,1 ,4 ,2 ,1 ,7 ,6 ,2 ,1 ,2 ,3 ,6 ,5 ,1, 2, 3 ,6 ,4 ,2};
-    int frames=4;
-    FIFO fifo;
-    fifo.executeFIFO(p,frames);
-    cout<<"FIFO HITS: "<<fifo.getHits()<<endl;
-    cout<<"FIFO FAULTS: "<<fifo.getFaults()<<endl<<endl;
-}
-void testLRU(){
-    cout<<"LRU TEST\n";
-    vector<int>p = {7 ,0 ,1 ,2 ,0 ,3 ,0 ,4 ,2, 3, 0, 3 ,2};
-    int frames=4;
-    LRU lru;
-    lru.executeLRU(p,frames);
-    cout<<"LRU HITS: "<<lru.getHits()<<endl;
-    cout<<"LRU FAULTS: "<<lru.getFaults()<<endl<<endl;
+//void testFIFO(){
+//    cout<<"FIFO TEST\n";
+//    vector<int>p = {3 ,2 ,1 ,4 ,2 ,1 ,7 ,6 ,2 ,1 ,2 ,3 ,6 ,5 ,1, 2, 3 ,6 ,4 ,2};
+//    int frames=4;
+//    FIFO fifo;
+//    fifo.executeFIFO(p,frames);
+//    cout<<"FIFO HITS: "<<fifo.getHits()<<endl;
+//    cout<<"FIFO FAULTS: "<<fifo.getFaults()<<endl<<endl;
+//}
+//void testLRU(){
+//    cout<<"LRU TEST\n";
+//    vector<int>p = {7 ,0 ,1 ,2 ,0 ,3 ,0 ,4 ,2, 3, 0, 3 ,2};
+//    int frames=4;
+//    LRU lru;
+//    lru.executeLRU(p,frames);
+//    cout<<"LRU HITS: "<<lru.getHits()<<endl;
+//    cout<<"LRU FAULTS: "<<lru.getFaults()<<endl<<endl;
+//}
+void testOPT(){
+	cout<<"OPT TEST\n";
+	int size;	//size of data frame
+	cin>>size;
+	vector<int>p;
+	for(int i=0;i<size;i++){
+		int n;
+		cin>>n;
+		p.push_back(n);
+	}
+	int frames=3;
+    OPT opt;
+    opt.executeOPT(p,frames);
+    cout<<"OPT HITS: "<<opt.getHits()<<endl;
+    cout<<"OPT FAULTS: "<<opt.getFaults()<<endl<<endl;
 }

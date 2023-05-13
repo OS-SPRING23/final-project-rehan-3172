@@ -88,5 +88,51 @@ class linkedList{
 				append(val);
 			}
 		}
+		void search_v(vector<int> p,int index,int val){		//check for the page which is the least used in the future.
+			if(len<frames){
+				append(val);
+			}
+			else{
+			int m[frames];
+			int j=0;
+			node* temp=head;
+			while(temp!=NULL){
+				int max=0;
+				for(int i=index;i<p.size();i++){
+					if(temp->data!=p[i]){
+						max++;
+					}
+					else{
+						break;
+					}
+				}
+				m[j]=max;
+				j++;
+				temp=temp->next;
+			}
+			int ans=m[0];
+			int idx=0;
+			for(int i=0;i<frames;i++){
+				if(ans<m[i]){
+					ans=m[i];
+					idx=i;
+				}
+			}
+			opt_replace(idx,val);
+		}
+	}
+		void opt_replace(int idx,int val){	//This function will replace the least used pag with the new page.
+			int j=idx;
+			node* temp=head;
+			if(idx==0){
+				temp->data=val;
+			}
+			else{
+				for(int i=0;i<j;i++){
+					temp=temp->next;
+				}
+				temp->data=val;
+			}
+		}
 		
 };
