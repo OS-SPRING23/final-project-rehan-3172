@@ -10,14 +10,11 @@ void testFIFO();
 void testLRU();
 void testOPT();
 void testSCD();
-
-
 int runFIFO(vector<int>proc, int frames);
 int runLRU(vector<int>proc, int frames);
 int runSCD(vector<int>proc, int frames);
 int runOPT(vector<int>proc, int frames);
 void runAll(vector<int>proc, int frames);
-
 
 int main(){
     cout<<"\t\t*********************PAGE REPLACEMENT PROJECT***********************\n\n";
@@ -58,7 +55,12 @@ void runAll(vector<int>proc, int frames){
     cout<<"Algorithm|Pages Hits|Page Faults|\n";
     cout<<"---------|----------|-----------|\n";
     for(int i=0;i<4;i++){
-        cout<<names[i]<<"   \t |"<<proc.size()-faults[i]<<"\t    |"<<faults[i]<<" \t|\n";
+    	if(faults[i]>=10){
+    		cout<<names[i]<<"   \t |"<<proc.size()-faults[i]<<"\t    |"<<faults[i]<<"\t\t|\n";
+		}
+		else{
+        cout<<names[i]<<"   \t |"<<proc.size()-faults[i]<<"\t    |"<<faults[i]<<" \t\t|\n";
+    	}
     }
     
     int min=faults[0];
