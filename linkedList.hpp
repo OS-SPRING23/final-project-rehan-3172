@@ -71,15 +71,18 @@ class linkedList{
 				return true;
 			}
 				// cout<<temp->data<<"|";
-			while(temp->next!=NULL){
-				if(temp->next->data==val && temp->next!=NULL){
-					
-					del=temp->next;
-					temp->next=del->next;
-					delete del; 
-					return true;
-				}
+			while(temp->next->data!=val && temp!=NULL){
 				temp=temp->next;
+			}
+			if(temp->next==tail){
+				len++;
+				return false;
+			}
+			if(temp->next->data==val && temp->next!=NULL){	
+				del=temp->next;
+				temp->next=del->next;
+				delete del; 
+				return true;
 			}
 			return false;
 		}
